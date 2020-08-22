@@ -6,6 +6,7 @@ const app = express();
 // ==> Rotas da API:
 const index = require('./routes/index');
 const modelRoute = require('./routes/model.routes');
+const airplaneRoute = require('./routes/airplane.routes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -14,5 +15,6 @@ app.use(cors());
 
 app.use(index);
 app.use('/api/', modelRoute);
+app.use('/api/', airplaneRoute);
 
 module.exports = app;
