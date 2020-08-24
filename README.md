@@ -29,8 +29,20 @@ npx nodemon
 | Find Airplane by Id | GET | `http://localhost:3000/api/airplane/{id}`|
 | Update Airplane by Id | UPDATE | `http://localhost:3000/api/airplane/{id}`|
 | Delete Airplane by Id | DELETE | `http://localhost:3000/api/airplane/{id}`|
+|---|---|---|
+| Create new ANAC Test | POST | `http://localhost:3000/api/airplane` |
+| List All ANAC Tests | GET | `http://localhost:3000/api/anacTest` |
+| Find ANAC Test by Id | GET | `http://localhost:3000/api/anacTest/{id}`|
+| Update ANAC Test by Id | UPDATE | `http://localhost:3000/api/anacTest/{id}`|
+| Delete ANAC Test by Id | DELETE | `http://localhost:3000/api/anacTest/{id}`|
 
 ## Database
+
+### Log into the PostgreSQL
+
+```bash
+sudo su - postgres
+```
 
 ### Create database
 
@@ -64,6 +76,17 @@ CREATE TABLE airplane (
     modelId serial REFERENCES model(modelId)
 );
 ```
+
+### Create test table
+
+```bash
+CREATE TABLE anacTest (
+    anacTestId serial PRIMARY KEY,
+    name VARCHAR (50),
+    maxScore float
+);
+```
+
 ## Set .env
 
 ### Copy .env.example
