@@ -11,7 +11,7 @@ npm i
 ### Run the backend server
 
 ```bash
-npx nodemon
+npm start
 ```
 
 ## Endpoints
