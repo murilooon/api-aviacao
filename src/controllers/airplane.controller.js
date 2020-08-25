@@ -17,7 +17,7 @@ exports.createAirplane = async (req, res) => {
 
 exports.listAllAirplanes = async (req, res) => {
   const response = await db.query(
-    'SELECT * FROM airplane',
+    'SELECT * FROM airplane ORDER BY modelId ASC',
   );
 
   res.status(200).send(response.rows);

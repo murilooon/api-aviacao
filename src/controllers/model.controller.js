@@ -17,7 +17,7 @@ exports.createModel = async (req, res) => {
 
 exports.listAllModels = async (req, res) => {
   const response = await db.query(
-    'SELECT * FROM model ORDER BY name ASC',
+    'SELECT * FROM model ORDER BY modelId ASC',
   );
 
   res.status(200).send(response.rows);
