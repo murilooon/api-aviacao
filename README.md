@@ -18,23 +18,23 @@ npm start
 
 | Método | Verbo HTTP | Endpoint |
 |---|---|---|
-| Create new Model | POST | `http://localhost:3000/api/model` |
-| List All Models | GET | `http://localhost:3000/api/model` |
-| Find Model by Id | GET | `http://localhost:3000/api/model/{id}`|
-| Update Model by Id | UPDATE | `http://localhost:3000/api/model/{id}`|
-| Delete Model by Id | DELETE | `http://localhost:3000/api/model/{id}`|
+| Create new Model | POST | `/model` |
+| List All Models | GET | `/model` |
+| Find Model by Id | GET | `/model/{id}`|
+| Update Model by Id | UPDATE | `/model/{id}`|
+| Delete Model by Id | DELETE | `/model/{id}`|
 |---|---|---|
-| Create new Airplane | POST | `http://localhost:3000/api/airplane` |
-| List All Airplanes | GET | `http://localhost:3000/api/airplane` |
-| Find Airplane by Id | GET | `http://localhost:3000/api/airplane/{id}`|
-| Update Airplane by Id | UPDATE | `http://localhost:3000/api/airplane/{id}`|
-| Delete Airplane by Id | DELETE | `http://localhost:3000/api/airplane/{id}`|
+| Create new Airplane | POST | `/airplane` |
+| List All Airplanes | GET | `/airplane` |
+| Find Airplane by Id | GET | `/airplane/{id}`|
+| Update Airplane by Id | UPDATE | `/airplane/{id}`|
+| Delete Airplane by Id | DELETE | `/airplane/{id}`|
 |---|---|---|
-| Create new ANAC Test | POST | `http://localhost:3000/api/airplane` |
-| List All ANAC Tests | GET | `http://localhost:3000/api/anacTest` |
-| Find ANAC Test by Id | GET | `http://localhost:3000/api/anacTest/{id}`|
-| Update ANAC Test by Id | UPDATE | `http://localhost:3000/api/anacTest/{id}`|
-| Delete ANAC Test by Id | DELETE | `http://localhost:3000/api/anacTest/{id}`|
+| Create new ANAC Test | POST | `/airplane` |
+| List All ANAC Tests | GET | `/anacTest` |
+| Find ANAC Test by Id | GET | `/anacTest/{id}`|
+| Update ANAC Test by Id | UPDATE | `/anacTest/{id}`|
+| Delete ANAC Test by Id | DELETE | `/anacTest/{id}`|
 
 ## Database
 
