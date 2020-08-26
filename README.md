@@ -31,10 +31,10 @@ npm start
 | Delete Airplane by Id | DELETE | `/airplane/{id}`|
 |---|---|---|
 | Create new ANAC Test | POST | `/airplane` |
-| List All ANAC Tests | GET | `/anacTest` |
-| Find ANAC Test by Id | GET | `/anacTest/{id}`|
-| Update ANAC Test by Id | UPDATE | `/anacTest/{id}`|
-| Delete ANAC Test by Id | DELETE | `/anacTest/{id}`|
+| List All ANAC Tests | GET | `/anac_test` |
+| Find ANAC Test by Id | GET | `/anac_test/{id}`|
+| Update ANAC Test by Id | UPDATE | `/anac_test/{id}`|
+| Delete ANAC Test by Id | DELETE | `/anac_test/{id}`|
 
 ## Database
 
@@ -50,38 +50,59 @@ sudo su - postgres
 createdb aviacao
 ```
 
-### Enter in the database
+### Migrate the tables
+
+```bash
+# create all tables
+npm run knex:migrate
+
+# delete all tables
+npm run knex:reset
+
+# rollback last migration
+npm run knex:unmigrate
+```
+
+### Populate the tables
+
+```bash
+npm run knex:seed
+```
+
+### Alternatively
+
+#### Enter in the database
 
 ```bash
 psql aviacao
 ```
 
-### Create model table
+#### Create model table
 
 ```bash
 CREATE TABLE model (
-    modelId serial PRIMARY KEY,
+    model_id serial PRIMARY KEY,
     name VARCHAR (50),
     capacity int,
     weight float
 );
 ```
 
-### Create airplane table
+#### Create airplane table
 
 ```bash
 CREATE TABLE airplane (
-    registerId serial PRIMARY KEY,
-    serialnumber int,
-    modelId serial REFERENCES model(modelId)
+    register_id serial PRIMARY KEY,
+    serial_number int,
+    model_id serial REFERENCES model(model_id)
 );
 ```
 
-### Create test table
+#### Create test table
 
 ```bash
-CREATE TABLE anacTest (
-    anacTestId serial PRIMARY KEY,
+CREATE TABLE anac_test (
+    anac_test_id serial PRIMARY KEY,
     name VARCHAR (50),
     maxScore float
 );

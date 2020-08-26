@@ -1,57 +1,60 @@
-const db = require('../config/database');
+const knex = require('../../database/db');
 
 exports.createAirplane = async (req, res) => {
-  const { modelId, serialNumber } = req.body;
-  await db.query(
-    'INSERT INTO airplane (modelId, serialNumber) VALUES ($1, $2)',
-    [modelId, serialNumber],
-  );
+  const { model_id, serial_number } = req.body;
+
+  await knex('airplane')
+    .insert({
+      'model_id': model_id,
+      'serial_number': serial_number
+    })
 
   res.status(201).send({
     message: 'Airplane added successfully!',
     body: {
-      model: { modelId, serialNumber },
+      model: { model_id, serial_number },
     },
   });
 };
 
 exports.listAllAirplanes = async (req, res) => {
-  const response = await db.query(
-    'SELECT * FROM airplane ORDER BY modelId ASC',
-  );
+  const response = await knex('airplane')
+    .select('*')
+    .orderBy('model_id', 'asc')
 
-  res.status(200).send(response.rows);
+  res.status(200).send(response);
 };
 
 exports.findAirplaneById = async (req, res) => {
-  const registerId = parseInt(req.params.id);
+  const register_id = parseInt(req.params.id);
 
-  const response = await db.query(
-    'SELECT * FROM airplane WHERE registerId = $1',
-    [registerId],
-  );
+  const response = await knex('airplane')
+    .select('*')
+    .where('register_id', register_id)
 
-  res.status(200).send(response.rows);
+  res.status(200).send(response);
 };
 
 exports.updateAirplaneById = async (req, res) => {
-  const registerId = parseInt(req.params.id);
-  const { modelId, serialNumber } = req.body;
+  const register_id = parseInt(req.params.id);
+  const { model_id, serial_number } = req.body;
 
-  await db.query(
-    'UPDATE airplane SET modelId = $1, serialNumber = $2 WHERE registerId = $3',
-    [modelId, serialNumber, registerId],
-  );
+  await knex('airplane')
+    .where('register_id', register_id)
+    .update({
+      'model_id': model_id,
+      'serial_number': serial_number
+    })
 
   res.status(200).send({ message: 'Airplane Updated Successfully!' });
 };
 
 exports.deleteAirplaneById = async (req, res) => {
-  const registerId = parseInt(req.params.id);
+  const register_id = parseInt(req.params.id);
 
-  await db.query('DELETE FROM airplane WHERE registerId = $1', [
-    registerId,
-  ]);
+  await knex('airplane')
+    .where('register_id', register_id)
+    .del()
 
-  res.status(200).send({ message: 'Airplane deleted successfully!', registerId });
+  res.status(200).send({ message: 'Airplane deleted successfully!', register_id });
 };

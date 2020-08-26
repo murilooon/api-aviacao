@@ -1,11 +1,14 @@
-const db = require('../config/database');
+const knex = require('../../database/db');
 
 exports.createModel = async (req, res) => {
   const { name, capacity, weight } = req.body;
-  await db.query(
-    'INSERT INTO model (name, capacity, weight) VALUES ($1, $2, $3)',
-    [name, capacity, weight],
-  );
+
+  await knex('model')
+    .insert({
+      'name': name,
+      'capacity': capacity,
+      'weight': weight
+    })
 
   res.status(201).send({
     message: 'Model added successfully!',
@@ -16,42 +19,44 @@ exports.createModel = async (req, res) => {
 };
 
 exports.listAllModels = async (req, res) => {
-  const response = await db.query(
-    'SELECT * FROM model ORDER BY modelId ASC',
-  );
+  const response = await knex('model')
+    .select('*')
+    .orderBy('model_id', 'asc')
 
-  res.status(200).send(response.rows);
+  res.status(200).send(response);
 };
 
 exports.findModelById = async (req, res) => {
-  const modelId = parseInt(req.params.id);
+  const model_id = parseInt(req.params.id);
 
-  const response = await db.query(
-    'SELECT * FROM model WHERE modelId = $1',
-    [modelId],
-  );
+  const response = await knex('model')
+    .select('*')
+    .where('model_id', model_id)
 
-  res.status(200).send(response.rows);
+  res.status(200).send(response);
 };
 
 exports.updateModelById = async (req, res) => {
-  const modelId = parseInt(req.params.id);
+  const model_id = parseInt(req.params.id);
   const { name, capacity, weight } = req.body;
 
-  await db.query(
-    'UPDATE model SET name = $1, capacity = $2, weight = $3 WHERE modelId = $4',
-    [name, capacity, weight, modelId],
-  );
+  await knex('model')
+    .where('model_id', model_id)
+    .update({
+      'name': name,
+      'capacity': capacity,
+      'weight': weight
+    })
 
   res.status(200).send({ message: 'Model Updated Successfully!' });
 };
 
 exports.deleteModelById = async (req, res) => {
-  const modelId = parseInt(req.params.id);
+  const model_id = parseInt(req.params.id);
 
-  await db.query('DELETE FROM model WHERE modelId = $1', [
-    modelId,
-  ]);
+  await knex('model')
+    .where('model_id', model_id)
+    .del()
 
-  res.status(200).send({ message: 'Model deleted successfully!', modelId });
+  res.status(200).send({ message: 'Model deleted successfully!', model_id });
 };
