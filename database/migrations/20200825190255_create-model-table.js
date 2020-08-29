@@ -1,3 +1,4 @@
+const { onUpdateTrigger } = require('../../knexfile')
 
 exports.up = function(knex) {
   return knex.schema.createTable('model', function(table) {
@@ -5,7 +6,9 @@ exports.up = function(knex) {
     table.string('name').notNullable();
     table.integer('capacity').notNullable();
     table.integer('weight').notNullable();
+    table.timestamps(true, true);
   })
+    .then(() => knex.raw(onUpdateTrigger('model')))
 }
 
 exports.down = function(knex) {
