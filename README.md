@@ -35,6 +35,19 @@ npm start
 | Find ANAC Test by Id | GET | `/anac_test/{id}`|
 | Update ANAC Test by Id | UPDATE | `/anac_test/{id}`|
 | Delete ANAC Test by Id | DELETE | `/anac_test/{id}`|
+|---|---|---|
+| Create new Syndicate | POST | `/syndicate` |
+| List All Syndicates | GET | `/syndicate` |
+| Find Syndicate by Id | GET | `/syndicate/{id}`|
+| Update Syndicate by Id | UPDATE | `/syndicate/{id}`|
+| Delete Syndicate by Id | DELETE | `/syndicate/{id}`|
+|---|---|---|
+| Create new Employee | POST | `/employee` |
+| List All Employees | GET | `/employee` |
+| Find Employee by Id | GET | `/employee/{id}`|
+| Update Employee by Id | UPDATE | `/employee/{id}`|
+| Delete Employee by Id | DELETE | `/employee/{id}`|
+
 
 ## Database
 
@@ -77,6 +90,18 @@ npm run knex:seed
 psql aviacao
 ```
 
+#### List all tables
+
+```bash
+\dt
+```
+
+#### Describe a table
+
+```bash
+\d 'table'
+```
+
 #### Create model table
 
 ```bash
@@ -105,6 +130,28 @@ CREATE TABLE anac_test (
     anac_test_id serial PRIMARY KEY,
     name VARCHAR (50),
     maxScore float
+);
+```
+
+#### Create syndicate table
+
+```bash
+CREATE TABLE syndicate (
+    syndicate_id serial PRIMARY KEY,
+    name string
+);
+```
+
+#### Create employee table
+
+```bash
+CREATE TABLE employee (
+    employee_id serial PRIMARY KEY,
+    syndicate_id serial REFERENCES syndicate(syndicate_id),
+    name string,
+    address string,
+    phone string,
+    salary float
 );
 ```
 

@@ -17,7 +17,8 @@
   "license": "ISC",
   "devDependencies": {
     "husky": "^4.2.5",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "reinstall-node-modules": "^2.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
