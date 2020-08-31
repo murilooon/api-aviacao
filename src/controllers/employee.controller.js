@@ -3,7 +3,7 @@ const knex = require('../../database/db');
 exports.createEmployee = async (req, res) => {
   const { syndicate_id, name, address, phone, salary } = req.body;
 
-  await knex('airplane')
+  await knex('employee')
     .insert({
       'syndicate_id': syndicate_id,
       'name': name,
@@ -20,7 +20,7 @@ exports.createEmployee = async (req, res) => {
   });
 };
 
-exports.listAllEmployee = async (req, res) => {
+exports.listAllEmployees = async (req, res) => {
   const response = await knex('employee')
     .select('*')
     .orderBy('name', 'asc')
@@ -28,7 +28,7 @@ exports.listAllEmployee = async (req, res) => {
   res.status(200).send(response);
 };
 
-exports.findAirplaneById = async (req, res) => {
+exports.findEmployeeById = async (req, res) => {
   const employee_id = parseInt(req.params.id);
 
   const response = await knex('employee')
@@ -38,7 +38,7 @@ exports.findAirplaneById = async (req, res) => {
   res.status(200).send(response);
 };
 
-exports.updateAirplaneById = async (req, res) => {
+exports.updateEmployeeById = async (req, res) => {
   const employee_id = parseInt(req.params.id);
   const { syndicate_id, name, address, phone, salary } = req.body;
 
@@ -55,7 +55,7 @@ exports.updateAirplaneById = async (req, res) => {
   res.status(200).send({ message: 'Employee Updated Successfully!' });
 };
 
-exports.deleteAirplaneById = async (req, res) => {
+exports.deleteEmployeeById = async (req, res) => {
   const employee_id = parseInt(req.params.id);
 
   await knex('employee')
