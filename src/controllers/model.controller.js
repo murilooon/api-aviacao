@@ -21,27 +21,27 @@ exports.createModel = async (req, res) => {
 exports.listAllModels = async (req, res) => {
   const response = await knex('model')
     .select('*')
-    .orderBy('model_id', 'asc')
+    .orderBy('_id', 'asc')
 
   res.status(200).send(response);
 };
 
 exports.findModelById = async (req, res) => {
-  const model_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   const response = await knex('model')
     .select('*')
-    .where('model_id', model_id)
+    .where('_id', _id)
 
   res.status(200).send(response);
 };
 
 exports.updateModelById = async (req, res) => {
-  const model_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
   const { name, capacity, weight } = req.body;
 
   await knex('model')
-    .where('model_id', model_id)
+    .where('_id', _id)
     .update({
       'name': name,
       'capacity': capacity,
@@ -52,11 +52,11 @@ exports.updateModelById = async (req, res) => {
 };
 
 exports.deleteModelById = async (req, res) => {
-  const model_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   await knex('model')
-    .where('model_id', model_id)
+    .where('_id', _id)
     .del()
 
-  res.status(200).send({ message: 'Model deleted successfully!', model_id });
+  res.status(200).send({ message: 'Model deleted successfully!', _id });
 };

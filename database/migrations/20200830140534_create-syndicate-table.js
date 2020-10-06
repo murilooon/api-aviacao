@@ -2,7 +2,7 @@ const { onUpdateTrigger } = require('../../knexfile')
 
 exports.up = function(knex) {
   return knex.schema.createTable('syndicate', function(table) {
-    table.increments('syndicate_id').primary();
+    table.increments('_id').primary();
     table.string('name').notNullable();
     table.timestamps(true, true);
   })

@@ -26,21 +26,21 @@ exports.listAllAirplanes = async (req, res) => {
 };
 
 exports.findAirplaneById = async (req, res) => {
-  const register_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   const response = await knex('airplane')
     .select('*')
-    .where('register_id', register_id)
+    .where('_id', _id)
 
   res.status(200).send(response);
 };
 
 exports.updateAirplaneById = async (req, res) => {
-  const register_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
   const { model_id, serial_number } = req.body;
 
   await knex('airplane')
-    .where('register_id', register_id)
+    .where('_id', _id)
     .update({
       'model_id': model_id,
       'serial_number': serial_number
@@ -50,11 +50,11 @@ exports.updateAirplaneById = async (req, res) => {
 };
 
 exports.deleteAirplaneById = async (req, res) => {
-  const register_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   await knex('airplane')
-    .where('register_id', register_id)
+    .where('_id', _id)
     .del()
 
-  res.status(200).send({ message: 'Airplane deleted successfully!', register_id });
+  res.status(200).send({ message: 'Airplane deleted successfully!', _id });
 };

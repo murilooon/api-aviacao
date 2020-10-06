@@ -25,21 +25,21 @@ exports.listAllSyndicate = async (req, res) => {
 };
 
 exports.findSyndicateById = async (req, res) => {
-  const syndicate_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   const response = await knex('syndicate')
     .select('*')
-    .where('syndicate_id', syndicate_id)
+    .where('_id', _id)
 
   res.status(200).send(response);
 };
 
 exports.updateSyndicateById = async (req, res) => {
-  const syndicate_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
   const { name } = req.body;
 
   await knex('syndicate')
-    .where('syndicate_id', syndicate_id)
+    .where('_id', _id)
     .update({
       'name': name
     })
@@ -48,11 +48,11 @@ exports.updateSyndicateById = async (req, res) => {
 };
 
 exports.deleteSyndicateById = async (req, res) => {
-  const syndicate_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   await knex('syndicate')
-    .where('syndicate_id', syndicate_id)
+    .where('_id', _id)
     .del()
 
-  res.status(200).send({ message: 'Syndicate deleted successfully!', syndicate_id });
+  res.status(200).send({ message: 'Syndicate deleted successfully!', _id });
 };

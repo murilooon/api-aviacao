@@ -29,21 +29,21 @@ exports.listAllEmployees = async (req, res) => {
 };
 
 exports.findEmployeeById = async (req, res) => {
-  const employee_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   const response = await knex('employee')
     .select('*')
-    .where('employee_id', employee_id)
+    .where('_id', _id)
 
   res.status(200).send(response);
 };
 
 exports.updateEmployeeById = async (req, res) => {
-  const employee_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
   const { syndicate_id, name, address, phone, salary } = req.body;
 
   await knex('employee')
-    .where('employee_id', employee_id)
+    .where('_id', _id)
     .update({
       'syndicate_id': syndicate_id,
       'name': name,
@@ -56,11 +56,11 @@ exports.updateEmployeeById = async (req, res) => {
 };
 
 exports.deleteEmployeeById = async (req, res) => {
-  const employee_id = parseInt(req.params.id);
+  const _id = parseInt(req.params.id);
 
   await knex('employee')
-    .where('employee_id', employee_id)
+    .where('_id', _id)
     .del()
 
-  res.status(200).send({ message: 'Employee deleted successfully!', employee_id });
+  res.status(200).send({ message: 'Employee deleted successfully!', _id });
 };

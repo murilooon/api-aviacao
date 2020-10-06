@@ -5,7 +5,7 @@ const ON_UPDATE_TIMESTAMP_FUNCTION = `
     NEW.updated_at = now();
     RETURN NEW;
   END;
-$$ language 'plpgsql';
+  $$ language 'plpgsql';
 `
 
 const DROP_ON_UPDATE_TIMESTAMP_FUNCTION = `DROP FUNCTION on_update_timestamp`

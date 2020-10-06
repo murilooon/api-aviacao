@@ -2,7 +2,7 @@ const { onUpdateTrigger } = require('../../knexfile')
 
 exports.up = function(knex) {
   return knex.schema.createTable('anac_test', function(table) {
-    table.increments('anac_test_id').primary();
+    table.increments('_id').primary();
     table.string('name').notNullable();
     table.decimal('max_score').notNullable();
     table.timestamps(true, true);

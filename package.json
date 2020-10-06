@@ -10,7 +10,7 @@
     "knex:migrate": "knex migrate:latest",
     "knex:unmigrate": "knex migrate:rollback",
     "knex:reset": "knex migrate:rollback --all",
-    "knex:seed": "knex seed:run "
+    "knex:seed": "knex seed:run"
   },
   "keywords": [],
   "author": "",
